@@ -46,9 +46,9 @@ class Event extends Resource
 
             Text::make('Name'),
 
-            BelongsTo::make('Owner', 'owner', User::class),
-
             BelongsToMany::make('Attendees', 'attendees', User::class),
+
+            BelongsTo::make('Owner', 'owner', User::class),
         ];
     }
 
