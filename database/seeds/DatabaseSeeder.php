@@ -11,6 +11,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $user = \App\User::firstOrCreate([
+            'email' => 'jane@example.com',
+            'name' => 'Jane Doe',
+            'password' => Hash::make('secret'),
+        ]);
+
+        $event = \App\Event::firstOrCreate([
+            'name' => 'sample event',
+            'user_id' => $user->id,
+        ]);
+
+        $event->attendees()->attach($user);
     }
 }
